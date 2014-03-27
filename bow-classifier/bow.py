@@ -110,6 +110,7 @@ for request in binary_wiki_requests:
 
 loo = cross_validation.LeaveOneOut(len(binary_wiki_requests))
 print len(loo)
+print len(binary_wiki_requests)
 
 accuracy = 0.0
 count = 0
