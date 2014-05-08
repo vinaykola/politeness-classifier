@@ -1,0 +1,29 @@
+from simplejson import loads
+import jsonrpclib
+
+import politeness_strategies
+
+server = jsonrpclib.Server("http://127.0.0.1:8080")
+
+text = 'Please help me out here. Hi, woops, I really appreciate your unlikely honesty.'
+#nlp = StanfordCoreNLPWrapper()
+#parse = nlp.getParse(text)
+
+parse = loads(server.parse(text))
+
+f = politeness_strategies.getPolitenessFeaturesFromParse(parse)
+
+politeness_strategies.getWordsFromParse(parse)
+
+wiki_requests = politeness_strategies.loadData()
+
+request_count = 0
+
+binary_wiki_requests = politeness_strategies.binarizeRequests(wiki_requests)
+
+X_train,y_train = politeness_strategies.train(binary_wiki_requests)
+
+clf = svm.LinearSVC()
+clf.fit(X_train,y_train)
+
+prediction = 
